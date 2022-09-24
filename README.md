@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Notes
+
+In the interest of time and focusing on frontend/UX, I did not build out a database for this application. I've indicated with comments and console logs where I think CRUD operations would be carried out.
+
 ## Available Scripts
 
 In the project directory, you can run:

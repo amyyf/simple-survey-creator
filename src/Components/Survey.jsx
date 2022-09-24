@@ -24,6 +24,7 @@ const reorderQuestions = (result, setQuestions) => {
 };
 
 export const Survey = () => {
+	// for a production, full-stack application, would get the questions from a database
 	const [questions, setQuestions] = useState([]);
 
 	return (
@@ -31,6 +32,7 @@ export const Survey = () => {
 			onDragEnd={(result) => reorderQuestions(result, setQuestions)}
 		>
 			<h1>I am a survey</h1>
+			<p>Number of questions: {questions.length}</p>
 			<Droppable droppableId="questions-container">
 				{(provided, snapshot) => (
 					<ul ref={provided.innerRef} {...provided.droppableProps}>

@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const toggleEditing = (setIsEditing) => {
+	console.log("CRUD database operations would be performed here");
+	setIsEditing((prevState) => !prevState);
+};
+
 export const Question = () => {
 	const [isEditing, setIsEditing] = useState(true);
 	const [type, setType] = useState();
@@ -7,10 +12,11 @@ export const Question = () => {
 
 	return (
 		<>
-			<button onClick={() => setIsEditing((prevState) => !prevState)}>
+			<button onClick={() => toggleEditing(setIsEditing)}>
 				Toggle Editing
 			</button>
-			{isEditing && (
+			{/* TODO: form validation? */}
+			{isEditing ? (
 				<form>
 					<label>
 						Select question type:
@@ -22,16 +28,19 @@ export const Question = () => {
 						</select>
 					</label>
 				</form>
+			) : (
+				<p>{type}</p>
 			)}
-			{isEditing && (
+			{isEditing ? (
 				<input
 					type="text"
 					value={text}
 					onChange={(e) => setText(e.target.value)}
 				/>
+			) : (
+				<p>{text}</p>
 			)}
-			{!isEditing && <p>{text}</p>}
-			{/* show answers and editable answer text */}
+			{/* TODO: show answers and editable answer text */}
 		</>
 	);
 };
