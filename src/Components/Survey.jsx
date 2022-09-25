@@ -42,8 +42,8 @@ export const Survey = () => {
 		<DragDropContext
 			onDragEnd={(result) => reorderQuestions(result, setQuestions)}
 		>
-			<main className="bg-cyan-50 border-slate-900 border-solid border-2 rounded p-4 md:p-8 mx-8 md:mx-auto mt-12 mb-16 max-w-2xl">
-				<div className="flex sm:gap-4">
+			<main className="bg-cyan-50 border-slate-900 border-solid border-2 rounded p-4 mx-8 mt-12 mb-16 md:p-8 md:mx-auto max-w-2xl">
+				<div className="flex xs:gap-4">
 					<h1 className="text-3xl mb-4">
 						{isEditingTitle ? (
 							<form
@@ -57,7 +57,7 @@ export const Survey = () => {
 								<input
 									type="text"
 									autoFocus
-									className="border-solid border-2 border-slate-900 text-slate-900 max-w-[200px] sm:max-w-none"
+									className="border-solid border-2 border-slate-900 text-slate-900 max-w-[200px] xs:max-w-none"
 									value={surveyTitle}
 									onChange={(e) => setSurveyTitle(e.target.value)}
 									required
@@ -80,7 +80,7 @@ export const Survey = () => {
 					<p className="mb-4">Number of questions: {questionIds.length}</p>
 				)}
 				<Droppable droppableId="questions-container">
-					{(provided, snapshot) => (
+					{(provided) => (
 						<ul
 							ref={provided.innerRef}
 							{...provided.droppableProps}

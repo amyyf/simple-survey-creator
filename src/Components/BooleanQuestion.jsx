@@ -13,7 +13,7 @@ export const BooleanQuestion = ({ isEditing }) => {
 					key={option}
 					type="text"
 					value={option}
-					className="block h-8 w-full bg-yellow-200"
+					className="block h-8 w-full bg-yellow-200 max-w-[200px] xs:max-w-none"
 					onChange={(e) =>
 						setAnswerText((prevState) => {
 							const newState = [...prevState];

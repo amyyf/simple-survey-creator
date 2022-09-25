@@ -21,7 +21,9 @@ export const MultipleChoiceQuestion = ({ isEditing }) => {
 					<input
 						type="text"
 						value={option}
-						className={`h-8 w-full ${isEditing && "bg-yellow-200"}`}
+						className={`h-8 w-full ${
+							isEditing && "bg-yellow-200"
+						} max-w-[200px] xs:max-w-none`}
 						required
 						onChange={(e) => {
 							setAnswers((prevState) => {

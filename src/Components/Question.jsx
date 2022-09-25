@@ -17,7 +17,7 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 
 	return (
 		<section
-			className={`bg-white flex space-between gap-8 border-2 border-solid border-slate-900 rounded p-4 relative ${
+			className={`bg-white flex space-between xs:gap-8 border-2 border-solid border-slate-900 rounded p-4 relative ${
 				isDragging && "bg-cyan-300"
 			}`}
 		>
@@ -35,7 +35,9 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 						className="space-y-2"
 					>
 						<textarea
-							className={`w-full ${isEditing && "bg-yellow-200"}`}
+							className={`w-full ${
+								isEditing && "bg-yellow-200"
+							} max-w-[150px] xs:max-w-none`}
 							value={text}
 							onChange={(e) => setText(e.target.value)}
 							required
@@ -43,7 +45,9 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 						<select
 							value={type}
 							onChange={(e) => setType(e.target.value)}
-							className={`h-8 ${isEditing && "bg-yellow-200"}`}
+							className={`h-8 ${
+								isEditing && "bg-yellow-200"
+							} max-w-[150px] xs:max-w-none`}
 							required
 						>
 							<option value="">-- Select question type: --</option>
