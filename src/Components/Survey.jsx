@@ -31,35 +31,43 @@ export const Survey = () => {
 		<DragDropContext
 			onDragEnd={(result) => reorderQuestions(result, setQuestions)}
 		>
-			<h1>I am a survey</h1>
-			<p>Number of questions: {questions.length}</p>
-			<Droppable droppableId="questions-container">
-				{(provided, snapshot) => (
-					<ul ref={provided.innerRef} {...provided.droppableProps}>
-						{questions.map((question, i) => (
-							<Draggable key={question} draggableId={question} index={i}>
-								{(provided, snapshot) => (
-									<li
-										ref={provided.innerRef}
-										{...provided.draggableProps}
-										{...provided.dragHandleProps}
-									>
-										<Question content={question} />
-									</li>
-								)}
-							</Draggable>
-						))}
-						{provided.placeholder}
-					</ul>
-				)}
-			</Droppable>
-			<button
-				onClick={() => {
-					addQuestion(setQuestions);
-				}}
-			>
-				Add a question
-			</button>
+			<main className="my-12 mx-8 lg:mx-auto max-w-4xl">
+				<h1 className="text-3xl">I am a survey</h1>{" "}
+				{/* TODO: make title editable */}
+				{questions.length > 0 && <p>Number of questions: {questions.length}</p>}
+				<Droppable droppableId="questions-container">
+					{(provided, snapshot) => (
+						<ul
+							ref={provided.innerRef}
+							{...provided.droppableProps}
+							className="max-w-2xl mx-auto py-8 space-y-4"
+						>
+							{questions.map((question, i) => (
+								<Draggable key={question} draggableId={question} index={i}>
+									{(provided, snapshot) => (
+										<li ref={provided.innerRef} {...provided.draggableProps}>
+											<Question
+												content={question}
+												dragHandleProps={provided.dragHandleProps}
+												isDragging={snapshot.isDragging}
+											/>
+										</li>
+									)}
+								</Draggable>
+							))}
+							{provided.placeholder}
+						</ul>
+					)}
+				</Droppable>
+				<button
+					onClick={() => {
+						addQuestion(setQuestions);
+					}}
+					className="text-lg border-slate-900 border-solid border-2 p-2 hover:bg-slate-400"
+				>
+					Add a question
+				</button>
+			</main>
 		</DragDropContext>
 	);
 };
