@@ -4,7 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Notes
 
-In the interest of time and focusing on frontend/UX, I did not build out a database for this application. I've indicated with comments and console logs where I think CRUD operations would be carried out.
+In the interest of time and focusing on frontend/UX, I did not build out a database for this application. I've indicated with comments and console logs where I envision CRUD operations happening.
+
+I've also made the main decisions about packages with time constraints in mind: [Create React App](https://create-react-app.dev/), [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd/), and [Tailwind](https://tailwindcss.com/) all allowed this project to get up and running very quickly.
 
 ## Available Scripts
 
