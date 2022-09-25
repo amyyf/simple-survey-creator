@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { prettyPrintType } from "../util";
 import { BooleanQuestion } from "./BooleanQuestion";
 import { Pencil } from "./Icons/Pencil";
 import { Trash } from "./Icons/Trash";
@@ -16,12 +17,15 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 
 	return (
 		<section
-			{...dragHandleProps}
-			className={`bg-white flex space-between gap-8 border-2 border-solid border-slate-900 rounded p-4 ${
+			className={`bg-white flex space-between gap-8 border-2 border-solid border-slate-900 rounded p-4 relative ${
 				isDragging && "bg-cyan-300"
 			}`}
 		>
-			<div className="flex-grow space-y-2">
+			<div
+				{...dragHandleProps}
+				className="block absolute inset-0 h-full w-11 bg-cyan-300 border-r-2 border-r-cyan-500 hover:bg-cyan-500"
+			></div>
+			<div className="flex-grow ml-10 space-y-2">
 				{isEditing ? (
 					<form
 						onSubmit={(e) => {
@@ -42,18 +46,21 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 							className={`h-8 ${isEditing && "bg-yellow-200"}`}
 							required
 						>
-							{/* make util to convert from type to pretty print */}
 							<option value="">-- Select question type: --</option>
-							<option value="text">Text</option>
-							<option value="number">Number</option>
-							<option value="boolean">Boolean</option>
-							<option value="multiple-choice">Multiple Choice</option>
+							<option value="text">{prettyPrintType("text")}</option>
+							<option value="number">{prettyPrintType("number")}</option>
+							<option value="boolean">{prettyPrintType("boolean")}</option>
+							<option value="multiple-choice">
+								{prettyPrintType("multiple-choice")}
+							</option>
 						</select>
 					</form>
 				) : (
 					<>
-						<p>{text}</p>
-						<p>{type}</p>
+						<p>
+							<span className="font-bold">{prettyPrintType(type)}: </span>
+							{text}
+						</p>
 					</>
 				)}
 				{type === "text" && (
