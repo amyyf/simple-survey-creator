@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Trash } from "./Icons/Trash";
 
 export const MultipleChoiceQuestion = ({ isEditing }) => {
 	const [answers, setAnswers] = useState(["Option 1 text"]);
@@ -6,18 +7,21 @@ export const MultipleChoiceQuestion = ({ isEditing }) => {
 
 	return isEditing ? (
 		<>
-			<input
-				type="checkbox"
-				name="select-opt"
-				checked={allowMultiple}
-				onChange={(e) => setAllowMultiple(e.target.checked)}
-			/>
-			<label htmlFor="select-opt">Allow selecting multiple answers</label>
+			<label htmlFor="select-opt" className="block space-x-2">
+				<input
+					type="checkbox"
+					name="select-opt"
+					checked={allowMultiple}
+					onChange={(e) => setAllowMultiple(e.target.checked)}
+				/>
+				<span>Allow selecting multiple options</span>
+			</label>
 			{answers.map((option, i) => (
-				<div key={`multiple-choice-${i}`}>
+				<div key={`multiple-choice-${i}`} className="flex">
 					<input
 						type="text"
 						value={option}
+						className={`h-8 w-full ${isEditing && "bg-yellow-200"}`}
 						required
 						onChange={(e) => {
 							setAnswers((prevState) => {
@@ -28,6 +32,7 @@ export const MultipleChoiceQuestion = ({ isEditing }) => {
 						}}
 					/>
 					<button
+						className="h-8 w-8 p-2 rounded group transition hover:bg-cyan-800 hover:text-slate-50"
 						onClick={(e) => {
 							e.preventDefault();
 							setAnswers((prevState) => {
@@ -37,11 +42,12 @@ export const MultipleChoiceQuestion = ({ isEditing }) => {
 							});
 						}}
 					>
-						-
+						<Trash />
 					</button>
 				</div>
 			))}
 			<button
+				className="p-2 rounded transition hover:bg-cyan-800 hover:text-slate-50"
 				onClick={(e) => {
 					e.preventDefault();
 					setAnswers((prevState) => [
@@ -50,25 +56,29 @@ export const MultipleChoiceQuestion = ({ isEditing }) => {
 					]);
 				}}
 			>
-				+
+				+ Add another option
 			</button>
 		</>
 	) : (
 		<>
-			<p>
+			<p className="italic">
 				{allowMultiple
 					? "Multiple options may be selected."
 					: "Only one option may be selected."}
 			</p>
 			{answers.map((option, i) => (
-				<div key={`option-${i}`}>
+				<label
+					key={`option-${i}`}
+					htmlFor={`option-${i}`}
+					className="block space-x-2"
+				>
 					<input
 						type={allowMultiple ? "checkbox" : "radio"}
 						name={`option-${i}`}
 						disabled
 					/>
-					<label htmlFor={`option-${i}`}>{option}</label>
-				</div>
+					<span>{option}</span>
+				</label>
 			))}
 		</>
 	);

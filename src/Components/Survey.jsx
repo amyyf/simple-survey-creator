@@ -42,9 +42,9 @@ export const Survey = () => {
 		<DragDropContext
 			onDragEnd={(result) => reorderQuestions(result, setQuestions)}
 		>
-			<main className="my-12 mx-8 lg:mx-auto max-w-4xl">
-				<div className="flex">
-					<h1 className="text-3xl">
+			<main className="bg-cyan-50 border-slate-900 border-solid border-2 rounded p-4 md:p-8 mx-8 md:mx-auto mt-12 mb-16 max-w-2xl">
+				<div className="flex gap-4">
+					<h1 className="text-3xl mb-4">
 						{isEditingTitle ? (
 							<form
 								onSubmit={(e) => {
@@ -56,7 +56,7 @@ export const Survey = () => {
 								<input
 									type="text"
 									autoFocus
-									className="border-solid border-2 border-slate-900"
+									className="border-solid border-2 border-slate-900 text-slate-900"
 									value={surveyTitle}
 									onChange={(e) => setSurveyTitle(e.target.value)}
 									required
@@ -68,20 +68,20 @@ export const Survey = () => {
 					</h1>
 					<button
 						onClick={() => setIsEditingTitle(!isEditingTitle)}
-						className="h-11 w-11 p-3"
+						className="h-11 w-11 p-3 group transition hover:bg-cyan-800 rounded"
 					>
 						{isEditingTitle ? "Save" : <Pencil />}
 					</button>
 				</div>
 				{questionIds.length > 0 && (
-					<p>Number of questions: {questionIds.length}</p>
+					<p className="mb-4">Number of questions: {questionIds.length}</p>
 				)}
 				<Droppable droppableId="questions-container">
 					{(provided, snapshot) => (
 						<ul
 							ref={provided.innerRef}
 							{...provided.droppableProps}
-							className="max-w-2xl mx-auto py-8 space-y-4"
+							className="space-y-4"
 						>
 							{questionIds.map((question, i) => (
 								<Draggable key={question} draggableId={question} index={i}>
@@ -106,7 +106,7 @@ export const Survey = () => {
 					onClick={() => {
 						addQuestion(setQuestions);
 					}}
-					className="text-lg border-slate-900 border-solid border-2 p-2 hover:bg-slate-400"
+					className="text-lg mt-4 bg-white rounded transition hover:bg-cyan-800 hover:text-slate-50 border-slate-900 border-solid border-2 p-2"
 				>
 					Add a question
 				</button>

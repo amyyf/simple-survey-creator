@@ -8,35 +8,34 @@ export const BooleanQuestion = ({ isEditing }) => {
 
 	return isEditing ? (
 		<>
-			<input
-				type="text"
-				value={answerText[0]}
-				onChange={(e) =>
-					setAnswerText((prevState) => {
-						const newState = [...prevState];
-						newState.splice(0, 1, e.target.value);
-						return newState;
-					})
-				}
-			/>
-			<input
-				type="text"
-				value={answerText[1]}
-				onChange={(e) =>
-					setAnswerText((prevState) => {
-						const newState = [...prevState];
-						newState.splice(1, 1, e.target.value);
-						return newState;
-					})
-				}
-			/>
+			{answerText.map((option, i) => (
+				<input
+					key={option}
+					type="text"
+					value={option}
+					className="block h-8 w-full bg-yellow-200"
+					onChange={(e) =>
+						setAnswerText((prevState) => {
+							const newState = [...prevState];
+							newState.splice(i, 1, e.target.value);
+							return newState;
+						})
+					}
+				/>
+			))}
 		</>
 	) : (
 		<>
-			<input type="radio" name="bool-1" disabled />
-			<label htmlFor="bool-1">{answerText[0]}</label>
-			<input type="radio" name="bool-2" disabled />
-			<label htmlFor="bool-2">{answerText[1]}</label>
+			{answerText.map((option, i) => (
+				<label
+					htmlFor={`bool-${i}`}
+					key={`bool-${i}`}
+					className="block space-x-2"
+				>
+					<input type="radio" name={`bool-${i}`} disabled />
+					<span>{option}</span>
+				</label>
+			))}
 		</>
 	);
 };

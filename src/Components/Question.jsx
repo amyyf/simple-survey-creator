@@ -17,19 +17,21 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 	return (
 		<section
 			{...dragHandleProps}
-			className={`bg-white flex space-between gap-2 border-2 border-solid border-slate-900 rounded p-4 ${
-				isDragging && "bg-slate-300"
+			className={`bg-white flex space-between gap-8 border-2 border-solid border-slate-900 rounded p-4 ${
+				isDragging && "bg-cyan-300"
 			}`}
 		>
-			<div className="flex-grow">
+			<div className="flex-grow space-y-2">
 				{isEditing ? (
 					<form
-						onSubmit={() => console.log("CRUD operations performed here.")}
+						onSubmit={(e) => {
+							e.preventDefault();
+							console.log("CRUD operations performed here.");
+						}}
 						className="space-y-2"
 					>
-						<input
-							type="text"
-							className={`block ${isEditing && "bg-slate-200"}`}
+						<textarea
+							className={`w-full ${isEditing && "bg-yellow-200"}`}
 							value={text}
 							onChange={(e) => setText(e.target.value)}
 							required
@@ -37,7 +39,7 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 						<select
 							value={type}
 							onChange={(e) => setType(e.target.value)}
-							className={`block ${isEditing && "bg-slate-200"}`}
+							className={`h-8 ${isEditing && "bg-yellow-200"}`}
 							required
 						>
 							{/* make util to convert from type to pretty print */}
@@ -64,14 +66,19 @@ export const Question = ({ deleteQuestion, dragHandleProps, isDragging }) => {
 				)}
 			</div>
 
-			<div className="flex flex-col">
+			<div className="flex flex-col self-start">
 				<button
 					onClick={() => toggleEditing(setIsEditing)}
-					className="h-11 w-11 p-3"
+					className={`h-11 w-11 ${
+						!isEditing && "p-3"
+					} rounded group transition hover:bg-cyan-800 hover:text-slate-50`}
 				>
 					{isEditing ? <p>Save</p> : <Pencil />}
 				</button>
-				<button className="h-11 w-11 p-3" onClick={deleteQuestion}>
+				<button
+					className="h-11 w-11 p-3 rounded group transition hover:bg-cyan-800 hover:text-slate-50"
+					onClick={deleteQuestion}
+				>
 					<Trash />
 				</button>
 			</div>
