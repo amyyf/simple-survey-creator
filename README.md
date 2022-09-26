@@ -1,12 +1,21 @@
-# Getting Started with Create React App
+# Simple Survey Creator UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simplified prototype version of a survey authoring tool.
 
 ## Notes
 
-In the interest of time and focusing on frontend/UX, I did not build out a database for this application. I've indicated with comments and console logs where I envision CRUD operations happening.
+Don't refresh your tab! In the interest of time and focusing on frontend/UX, I did not build out a database for this application. I've indicated with some comments and console logs where I envision CRUD operations happening.
 
-I've also made the main decisions about packages with time constraints in mind: [Create React App](https://create-react-app.dev/), [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd/), and [Tailwind](https://tailwindcss.com/) all allowed this project to get up and running very quickly.
+I've also made the main decisions about packages with time constraints in mind: [Create React App](https://create-react-app.dev/), [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd/), and [Tailwind](https://tailwindcss.com/) all allowed this project to get up and running quickly.
+
+### Ideas for Future Improvements
+
+- A database! So surveys can be, uh, saved. I've worked with Prisma ORM recently and found it pretty easy to use along with React Query to add a caching layer. Being able to create and save multiple surveys also raises questions of accounts and user management. We'd definitely also need form validation. Bringing in a library like [Formik](https://formik.org/) would probably be a good idea.
+- In this imaginary world of multiple surveys, the layout of the application would need to change. The home page could be a list of existing surveys and the ability to create a new one. We'd need routing.
+- The ability to export surveys, or mark them as complete, so a user could actually complete one.
+- As the application grows, testing would become important.
+- Refine UI design, add Storybook for a component library, and consider moving away from Tailwind for easier readability of CSS in the future.
+- There are some security issues in the dependencies, which I believe arose when I added react-beautiful-dnd. Running `npm audit fix --force` as suggested seemed to roll back a bunch of versions and gave me even more vulnerabilities, which was ultimately not very helpful. I also had to disable Strict Mode to get this package working. These are mostly development issues but we don't want vulnerabilities or exploitabilities in a production application.
 
 ## Available Scripts
 
